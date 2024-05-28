@@ -45,14 +45,14 @@ public class RegisterTest extends BaseTest {
         passwordField.sendKeys("Pass12345");
         WebElement passwordConfirm = driver.findElement(By.id("repeatedPassword"));
         passwordConfirm.sendKeys("Pass12345");
-        WebElement registerLink = driver.findElement(By.className("button"));
+        WebElement registerLink = driver.findElement(By.cssSelector("#customerForm > table > tbody > tr:nth-child(13) > td:nth-child(2) > input"));
         registerLink.click();
 
-       /* Thread.sleep(4000);
+       Thread.sleep(4000);
 
         String actualMessage = driver.findElement(By.xpath("////div[@id='rightPanel']/p")).getText();
         String expectedMessage = "Your account was created successfully. You are now logged in.";
-        Assert.assertEquals("Verify Welcome Message",expectedMessage,actualMessage);*/
+        Assert.assertEquals("Verify Welcome Message",expectedMessage,actualMessage);
 
        // driver.quit();
 

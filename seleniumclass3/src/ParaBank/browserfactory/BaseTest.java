@@ -23,7 +23,7 @@ public class BaseTest {
     public void enterCredentialsAndLogin(String username, String password){
         driver.findElement(By.name("username")).sendKeys(username);
         driver.findElement(By.name("password")).sendKeys(password);
-        driver.findElement(By.className("button")).click();
+        driver.findElement(By.cssSelector("#loginPanel > form > div:nth-child(5) > input")).click();
     }
 
 

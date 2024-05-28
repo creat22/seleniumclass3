@@ -21,28 +21,24 @@ public class LoginTest extends BaseTest {
         enterCredentialsAndLogin("Kriti12", "Pass12345");
         WebElement accountOverview = driver.findElement(By.xpath("//div[@id='leftPanel']/ul/li[2]/a"));
         accountOverview.click();
-        System.out.println(accountOverview.isDisplayed());
-
+       // System.out.println(accountOverview.isDisplayed());
+        driver.close();
     }
-
-    @Test
-    public void verifyErrorMessage() {
-        enterCredentialsAndLogin("xyz123", "Pass12345");
-        String actualMessage = driver.findElement(By.xpath("//div[@id='rightPanel']/p")).getText();
-        String expectedMessage = "The username and password could not be verified.";
-        Assert.assertEquals("Verify Error Message", actualMessage, expectedMessage);
-
-    }
-
     @Test
     public void logOutSuccessfully() {
-        enterCredentialsAndLogin("Harry22", "Password12345");
+        enterCredentialsAndLogin("Kriti12", "Password12345");
         WebElement logOut = driver.findElement(By.xpath("//div[@id='leftPanel']/ul/li[8]/a"));
         logOut.click();
         WebElement CustomerLogin = driver.findElement(By.xpath("//div[@id='leftPanel']/h2"));
         System.out.println(CustomerLogin.isDisplayed());
+        driver.close();
+    }@Test
+    public void verifyErrorMessage() {
+        enterCredentialsAndLogin("xxxx", "xxxx$");
+        String actualMessage = driver.findElement(By.xpath("//div[@id='rightPanel']/p")).getText();
+        String expectedMessage = "The username and password could not be verified.";
+        Assert.assertEquals("Verify Error Message", actualMessage, expectedMessage);
     }
-
   /*  @After
     public void close() {
         closeBrowser();
