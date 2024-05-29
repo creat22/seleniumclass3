@@ -25,11 +25,7 @@ public class BaseTest {
         driver.findElement(By.name("password")).sendKeys(password);
         driver.findElement(By.cssSelector("#loginPanel > form > div:nth-child(5) > input")).click();
     }
-
-
-
-   /* @After
-
+ /*   @After
     public void closeBrowser(){driver.quit();}*/
 
 
