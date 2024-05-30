@@ -36,7 +36,7 @@ public class TestSuite extends TopMenuTest {
             obtainedList.add(products.getText());}
         List<String> sortedList = new ArrayList<>(obtainedList);
         Collections.sort(sortedList, Collections.reverseOrder());
-
+        //assert obtainedList.equals(sortedList);
         System.out.println(obtainedList);
         System.out.println(sortedList);}
     @Test
@@ -71,25 +71,26 @@ public class TestSuite extends TopMenuTest {
         Assert.assertEquals(expectedMsg2,priceAmount);*/
 
         driver.findElement(By.xpath("//button[@id='add-to-cart-button-1']")).click();
-        Thread.sleep(7000);
+        Thread.sleep(3000);
+
         //verify the shoppingcart message
+        String shoppingCartMsg = driver.findElement(By.cssSelector("#bar-notification > div > p")).getText();
+        String expectedMsg3 = "The product has been added to your shopping cart";
+        Assert.assertEquals(expectedMsg3,shoppingCartMsg);
 
-        /*String shoppingCartMsg = driver.findElement(By.cssSelector("#bar-notification > div > p")).getText();
-        String expectedMsg3 = "The product has been added to your shopping cart\n"+"×";
-        Assert.assertEquals(expectedMsg3,shoppingCartMsg);*/
-
-        Thread.sleep(2000);
-        driver.findElement(By.cssSelector("#bar-notification > div > span")).click();
+        //Thread.sleep(2000);
+        driver.findElement(By.xpath("//*[@id='bar-notification']/div/span")).click();
         WebElement shoppingCart = driver.findElement(By.cssSelector("#topcartlink > a > span.cart-label"));
         action.moveToElement(shoppingCart).click().build().perform();
-        selectMenu("GO TO CART");
+        WebElement GoToCartButton = driver.findElement(By.cssSelector("#flyout-cart > div > div.buttons > button"));
+        GoToCartButton.click();
 
         //verify ShoppingCartText
         String shoppingCartText = driver.findElement(By.xpath("//div[@id='main']/div/div/div/div[1]/h1")).getText();
         String expectedMsg5 = "Shopping cart";
         Assert.assertEquals(expectedMsg5,shoppingCartText);
+        driver.findElement(By.cssSelector("#quantity-up-11231")).click();
 
-        driver.findElement(By.cssSelector("#quantity-up-11220")).click();
         Thread.sleep(2000);
         //verify the total amount
         String totalAmount = driver.findElement(By.xpath("//*[@id='shopping-cart-form']/div[1]/table/tbody/tr/td[6]/span")).getText();
